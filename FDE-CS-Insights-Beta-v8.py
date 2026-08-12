@@ -589,7 +589,7 @@ def go(page, account=None):
 
 
 def _bg_source(ref):
-    """Turn a page-background reference into a CSS url() value.
+    """Turn a page-background reference into a  url() value.
 
     Accepts a full http(s) URL (used directly) or a local file path (read and
     embedded as base64, so the published app needs no external image host).
@@ -716,6 +716,12 @@ def inject_css():
       a, a:visited {{ color:{ACCENT}; }}
       :focus-visible {{ outline:2px solid {ACCENT}; outline-offset:2px; }}
       @media (prefers-reduced-motion: reduce) {{ * {{ animation:none !important; transition:none !important; }} }}
+
+      /* hide Streamlit's own header, toolbar, menu and footer */
+      header[data-testid="stHeader"] {{display:none;}}
+      [data-testid="stToolbar"] {{display:none;}}
+      footer {{visibility:hidden;}}
+      #MainMenu {{visibility:hidden;}}
     </style>
     """, unsafe_allow_html=True)
 
